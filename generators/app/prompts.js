@@ -130,7 +130,7 @@ function askForTestOpts(meta) {
     }
     if (meta || !this.skipClient) {
         // all client side test frameworks should be added here
-        choices.push({ name: 'Protractor', value: 'protractor' });
+        choices.push({ name: 'Protractor', value: 'protractor' }, { name: 'Cypress', value: 'cypress' });
     }
     const PROMPT = {
         type: 'checkbox',

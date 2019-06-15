@@ -90,6 +90,7 @@ module.exports = class extends BaseBlueprintGenerator {
                 this.serverPort = this.configOptions.serverPort;
                 this.clientFramework = this.configOptions.clientFramework;
                 this.protractorTests = this.testFrameworks.includes('protractor');
+                this.cypressTests = this.testFrameworks.includes('cypress');
                 this.gatlingTests = this.testFrameworks.includes('gatling');
             },
             writePrettierConfig() {
