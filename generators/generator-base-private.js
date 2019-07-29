@@ -795,11 +795,12 @@ module.exports = class extends Generator {
      * @return {string} version - retrieved version or empty string if not found
      */
     findBlueprintVersion(blueprintPkgName) {
+        const npmPrefix = '/home/cdessoude/.nvm/versions/node/v10.16.0/lib/node_modules';
         let packageJsonPath = path.join(process.cwd(), 'node_modules', blueprintPkgName, 'package.json');
         try {
             if (!fs.existsSync(packageJsonPath)) {
                 this.debug('using global module as local version could not be found in node_modules');
-                packageJsonPath = path.join(blueprintPkgName, 'package.json');
+                packageJsonPath = path.join(npmPrefix, blueprintPkgName, 'package.json');
             }
             // eslint-disable-next-line global-require,import/no-dynamic-require
             const packagejs = require(packageJsonPath);
