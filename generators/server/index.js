@@ -48,6 +48,12 @@ module.exports = class extends BaseBlueprintGenerator {
             defaults: false
         });
 
+        this.option('applicationType', {
+            desc: 'Indicates which applicationType to use',
+            type: String,
+            defaults: ''
+        });
+
         // This adds support for a `--experimental` flag which can be used to enable experimental features
         this.option('experimental', {
             desc:
@@ -55,7 +61,10 @@ module.exports = class extends BaseBlueprintGenerator {
             type: Boolean,
             defaults: false
         });
-
+        this.applicationType = this.options.applicationType || this.configOptions.applicationType || this.config.get('applicationType');
+        if (!this.applicationType) {
+            this.applicationType = 'monolith';
+        }
         this.uaaBaseName = this.options.uaaBaseName || this.configOptions.uaaBaseName || this.config.get('uaaBaseName');
 
         this.setupServerOptions(this);
@@ -127,10 +136,6 @@ module.exports = class extends BaseBlueprintGenerator {
 
                 this.packagejs = packagejs;
                 const configuration = this.getAllJhipsterConfig(this, true);
-                this.applicationType = configuration.get('applicationType') || this.configOptions.applicationType;
-                if (!this.applicationType) {
-                    this.applicationType = 'monolith';
-                }
                 this.reactive = configuration.get('reactive') || this.configOptions.reactive;
                 this.reactiveRepository = this.reactive ? 'reactive/' : '';
                 this.packageName = configuration.get('packageName');
