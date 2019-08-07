@@ -18,7 +18,7 @@
 -%>
 <div>
     <h2>
-        <span id="user-management-page-heading" jhiTranslate="userManagement.home.title">Users</span>
+        <span id="user-management-page-heading" jhiTranslate="userManagement.home.title" data-e2e-element="user-management-title">Users</span>
         <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./new']">
             <fa-icon [icon]="'plus'"></fa-icon> <span jhiTranslate="userManagement.home.createLabel">Create a new User</span>
         </button>
@@ -44,11 +44,11 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody *ngIf ="users">
-            <tr *ngFor="let user of users; trackBy: trackIdentity">
+            <tbody *ngIf ="users" data-e2e-container="users-table-body">
+            <tr *ngFor="let user of users; trackBy: trackIdentity" id='{{user.login}}'>
                 <td><a [routerLink]="['./', user.login, 'view']">{{user.id}}</a></td>
                 <td>{{user.login}}</td>
-                <td>{{user.email}}</td>
+                <td class='jhi-user-email'>{{user.email}}</td>
                 <td>
                     <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated"
                             jhiTranslate="userManagement.deactivated">Deactivated</button>

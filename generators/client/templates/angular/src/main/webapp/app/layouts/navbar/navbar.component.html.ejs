@@ -16,7 +16,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -%>
-<nav class="navbar navbar-<% if (clientTheme === 'none') { %>dark<% } else { %><%= clientThemeVariant %><% } %> navbar-expand-md <% if (clientTheme === 'none') { %>bg-dark<% } else { %>bg-<%= clientThemeVariant %><% } %>">
+<nav class="navbar navbar-<% if (clientTheme === 'none') { %>dark<% } else { %><%= clientThemeVariant %><% } %> navbar-expand-md <% if (clientTheme === 'none') { %>bg-dark<% } else { %>bg-<%= clientThemeVariant %><% } %>" data-e2e-container="navbar">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <span class="logo-img"></span>
         <span jhiTranslate="global.title" class="navbar-title"><%= capitalizedBaseName %></span> <span class="navbar-version">{{version}}</span>
@@ -35,7 +35,14 @@
                 </a>
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li
+                *ngSwitchCase="true"
+                ngbDropdown
+                class="nav-item dropdown pointer"
+                display="dynamic"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+                data-e2e-element="entity-menu">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <fa-icon icon="th-list"></fa-icon>
@@ -48,7 +55,14 @@
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>
-            <li *<%=jhiPrefix%>HasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li
+                *<%=jhiPrefix%>HasAnyAuthority="'ROLE_ADMIN'"
+                ngbDropdown
+                class="nav-item dropdown pointer"
+                display="dynamic"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+                data-e2e-element="admin-menu">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
                         <fa-icon icon="user-plus"></fa-icon>
@@ -144,7 +158,7 @@
                 </ul>
             </li>
             <%_ } _%>
-            <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-e2e-element="account-menu">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                   <span *ngIf="!getImageUrl()">
                     <fa-icon icon="user"></fa-icon>
@@ -185,7 +199,7 @@
                             <span jhiTranslate="global.menu.account.logout">Sign out</span>
                         </a>
                     </li>
-                    <li *ngSwitchCase="false">
+                    <li *ngSwitchCase="false" data-e2e-element="login">
                         <a class="dropdown-item" (click)="login()" id="login">
                             <fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.account.login">Sign in</span>

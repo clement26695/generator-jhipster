@@ -16,15 +16,15 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -%>
-<div class="modal-header">
-    <h4 class="modal-title" jhiTranslate="login.title">Sign in</h4>
+<div class="modal-header" data-e2e-container="login-modal">
+    <h4 class="modal-title" jhiTranslate="login.title" data-e2e-element="title">Sign in</h4>
     <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')"><span aria-hidden="true">x</span>
     </button>
 </div>
-<div class="modal-body">
+<div class="modal-body" data-e2e-container="login-modal">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="alert alert-danger" *ngIf="authenticationError" jhiTranslate="login.messages.error.authentication">
+            <div class="alert alert-danger" *ngIf="authenticationError" jhiTranslate="login.messages.error.authentication" data-e2e-element="alert-authentication-error">
                 <strong>Failed to sign in!</strong> Please check your credentials and try again.
             </div>
         </div>
@@ -33,12 +33,12 @@
                 <div class="form-group">
                     <label class="username-label" for="username" jhiTranslate="global.form.username.label">Login</label>
                     <input type="text" class="form-control" name="username" id="username" placeholder="{{'global.form.username.placeholder' | translate}}"
-                           formControlName="username">
+                           formControlName="username" data-e2e-element="username">
                 </div>
                 <div class="form-group">
                     <label for="password" jhiTranslate="login.form.password">Password</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="{{'login.form.password.placeholder' | translate}}"
-                           formControlName="password">
+                           formControlName="password" data-e2e-element="password">
                 </div>
                 <div class="form-check"<% if (authenticationType === 'session' && databaseType === 'no') { %> hidden<% } %>>
                     <label class="form-check-label" for="rememberMe">
@@ -46,7 +46,7 @@
                         <span jhiTranslate="login.form.rememberme">Remember me</span>
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary" jhiTranslate="login.form.button">Sign in</button>
+                <button type="submit" class="btn btn-primary" jhiTranslate="login.form.button" data-e2e-element="submit">Sign in</button>
             </form>
             <p></p>
             <%_ if (!skipUserManagement) { _%>
