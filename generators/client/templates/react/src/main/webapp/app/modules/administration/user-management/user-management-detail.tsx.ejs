@@ -38,7 +38,7 @@ export const UserManagementDetail = (props: IUserManagementDetailProps) => {
   const { user } = props;
 
   return (
-    <div>
+    <div data-e2e-container="user-details-page">
       <h2>
         <Translate contentKey="userManagement.detail.title">User</Translate> [<b>{user.login}</b>]
       </h2>
@@ -46,7 +46,7 @@ export const UserManagementDetail = (props: IUserManagementDetailProps) => {
         <dl className="jh-entity-details">
           <dt><Translate contentKey="userManagement.login">Login</Translate></dt>
           <dd>
-            <span>{user.login}</span>&nbsp;
+            <span data-e2e-element="user-login">{user.login}</span>&nbsp;
             {
               user.activated ? (
               <Badge color="success"><Translate contentKey="userManagement.activated">Activated</Translate></Badge>

@@ -79,7 +79,9 @@ export class UserManagement extends React.Component<IUserManagementProps, IPagin
     return (
       <div>
         <h2 id="user-management-page-heading">
-          <Translate contentKey="userManagement.home.title">Users</Translate>
+          <div data-e2e-element="user-management-title">
+            <Translate contentKey="userManagement.home.title">Users</Translate>
+          </div>
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity">
             <FontAwesomeIcon icon="plus" /> <Translate contentKey="userManagement.home.createLabel">Create a new user</Translate>
           </Link>
@@ -107,7 +109,7 @@ export class UserManagement extends React.Component<IUserManagementProps, IPagin
               <%_ } _%>
             </tr>
           </thead>
-          <tbody>
+          <tbody data-e2e-container="users-table-body">
             {
             users.map((user, i) => (
               <tr id={user.login} key={`user-${i}`}>
@@ -120,14 +122,14 @@ export class UserManagement extends React.Component<IUserManagementProps, IPagin
                   </Button>
                 </td>
                 <td>{user.login}</td>
-                <td>{user.email}</td>
+                <td data-e2e-element="email">{user.email}</td>
                 <td>
                   {user.activated ? (
-                    <Button color="success" onClick={this.toggleActive(user) }>
+                    <Button color="success" onClick={this.toggleActive(user) } data-e2e-element="deactivate-button">
                       Activated
                     </Button>
                   ) : (
-                    <Button color="danger" onClick={this.toggleActive(user) }>
+                    <Button color="danger" onClick={this.toggleActive(user) } data-e2e-element="activate-button">
                       Deactivated
                     </Button>
                   )}
@@ -155,18 +157,21 @@ export class UserManagement extends React.Component<IUserManagementProps, IPagin
                     <Button
                       tag={Link} to={`${match.url}/${user.login}`}
                       color="info" size="sm"
+                      data-e2e-element="detail-button"
                     >
                       <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline" ><Translate contentKey="entity.action.view">View</Translate></span>
                     </Button>
                     <Button
                       tag={Link} to={`${match.url}/${user.login}/edit`}
                       color="primary" size="sm"
+                      data-e2e-element="edit-button"
                     >
                       <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline"><Translate contentKey="entity.action.edit">Edit</Translate></span>
                     </Button>
                     <Button
                       tag={Link} to={`${match.url}/${user.login}/delete`}
                       color="danger" size="sm" disabled={account.login === user.login}
+                      data-e2e-element="delete-button"
                     >
                       <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline"><Translate contentKey="entity.action.delete">Delete</Translate></span>
                     </Button>

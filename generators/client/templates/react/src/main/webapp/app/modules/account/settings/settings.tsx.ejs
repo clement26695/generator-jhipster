@@ -50,7 +50,7 @@ export const SettingsPage = (props: IUserSettingsProps) => {
   };
 
   return (
-    <div>
+    <div data-e2e-container="settings-page">
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="settings-title">
@@ -72,6 +72,7 @@ export const SettingsPage = (props: IUserSettingsProps) => {
                 maxLength: { value: 50, errorMessage: translate('settings.messages.validate.firstname.maxlength') }
               }}
               value={props.account.firstName}
+              data-e2e-element="first-name"
             />
             {/* Last name */}
             <AvField
@@ -86,6 +87,7 @@ export const SettingsPage = (props: IUserSettingsProps) => {
                 maxLength: { value: 50, errorMessage: translate('settings.messages.validate.lastname.maxlength') }
               }}
               value={props.account.lastName}
+              data-e2e-element="last-name"
             />
             {/* Email */}
             <AvField
@@ -99,6 +101,7 @@ export const SettingsPage = (props: IUserSettingsProps) => {
                 maxLength: { value: 254, errorMessage: translate('global.messages.validate.email.maxlength') }
               }}
               value={props.account.email}
+              data-e2e-element="email"
             />
             <%_ if (enableTranslation) { _%>
             {/* Language key */}
@@ -117,7 +120,7 @@ export const SettingsPage = (props: IUserSettingsProps) => {
               ))}
             </AvField>
             <%_ } _%>
-            <Button color="primary" type="submit">
+            <Button color="primary" type="submit" data-e2e-element="submit">
               <Translate contentKey="settings.form.button">Save</Translate>
             </Button>
           </AvForm>

@@ -49,10 +49,10 @@ export const RegisterPage = (props: IRegisterProps) => {
   const updatePassword = event => setPassword(event.target.value);
 
   return (
-    <div>
+    <div data-e2e-container="register-page">
       <Row className="justify-content-center">
         <Col md="8">
-          <h1 id="register-title">
+          <h1 id="register-title" data-e2e-element="title">
             <Translate contentKey="register.title">Registration</Translate>
           </h1>
         </Col>
@@ -70,6 +70,7 @@ export const RegisterPage = (props: IRegisterProps) => {
                 minLength: { value: 1, errorMessage: translate('register.messages.validate.login.minlength') },
                 maxLength: { value: 50, errorMessage: translate('register.messages.validate.login.maxlength') }
               }}
+              data-e2e-element="username"
             />
             <AvField
               name="email"
@@ -81,6 +82,7 @@ export const RegisterPage = (props: IRegisterProps) => {
                 minLength: { value: 5, errorMessage: translate('global.messages.validate.email.minlength') },
                 maxLength: { value: 254, errorMessage: translate('global.messages.validate.email.maxlength') }
               }}
+              data-e2e-element="email"
             />
             <AvField
               name="firstPassword"
@@ -93,6 +95,7 @@ export const RegisterPage = (props: IRegisterProps) => {
                 minLength: { value: 4, errorMessage: translate('global.messages.validate.newpassword.minlength') },
                 maxLength: { value: 50, errorMessage: translate('global.messages.validate.newpassword.maxlength') }
               }}
+              data-e2e-element="password"
             />
             <PasswordStrengthBar password={password} />
             <AvField
@@ -106,8 +109,9 @@ export const RegisterPage = (props: IRegisterProps) => {
                 maxLength: { value: 50, errorMessage: translate('global.messages.validate.confirmpassword.maxlength') },
                 match: { value: 'firstPassword', errorMessage: translate('global.messages.error.dontmatch') }
               }}
+              data-e2e-element="confirmation-password"
             />
-            <Button id="register-submit" color="primary" type="submit">
+            <Button id="register-submit" color="primary" type="submit" data-e2e-element="submit">
               <Translate contentKey="register.form.button">Register</Translate>
             </Button>
           </AvForm>

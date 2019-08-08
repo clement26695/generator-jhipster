@@ -45,11 +45,13 @@ const accountMenuItemsAuthenticated = (
 
 const accountMenuItems = (
   <>
+  <div data-e2e-element="login">
   <%_ if (authenticationType !== 'oauth2') { _%>
     <MenuItem id="login-item" icon="sign-in-alt" to="/login"><Translate contentKey="global.menu.account.login">Sign in</Translate></MenuItem>
   <%_ } else { _%>
     <DropdownItem id="login-item" tag="a" href={getLoginUrl()}><FontAwesomeIcon icon="sign-in-alt" /> <Translate contentKey="global.menu.account.login">Sign in</Translate></DropdownItem>
   <%_ } _%>
+  </div>
   <%_ if (!skipUserManagement) { _%>
     <MenuItem icon="sign-in-alt" to="/register"><Translate contentKey="global.menu.account.register">Register</Translate></MenuItem>
   <%_ } _%>
@@ -57,9 +59,11 @@ const accountMenuItems = (
 );
 
 export const AccountMenu = ({ isAuthenticated = false }) => (
-  <NavDropdown icon="user" name={translate('global.menu.account.main')} id="account-menu">
-    {isAuthenticated ? accountMenuItemsAuthenticated : accountMenuItems}
-  </NavDropdown>
+  <div data-e2e-element="account-menu">
+    <NavDropdown icon="user" name={translate('global.menu.account.main')} id="account-menu">
+      {isAuthenticated ? accountMenuItemsAuthenticated : accountMenuItems}
+    </NavDropdown>
+  </div>
 );
 
 export default AccountMenu;

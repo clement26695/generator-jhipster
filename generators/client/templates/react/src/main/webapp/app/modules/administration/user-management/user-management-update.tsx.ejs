@@ -62,7 +62,7 @@ export const UserManagementUpdate = (props: IUserManagementUpdateProps) => {
   const { user, loading, updating, roles } = props;
 
   return (
-    <div>
+    <div data-e2e-container="user-edit-page">
       <Row className="justify-content-center">
         <Col md="8">
           <h1>
@@ -170,6 +170,7 @@ export const UserManagementUpdate = (props: IUserManagementUpdateProps) => {
                 }
             }}
             value={user.email}
+            data-e2e-element="email"
           />
           </AvGroup>
           <AvGroup check>
@@ -210,7 +211,7 @@ export const UserManagementUpdate = (props: IUserManagementUpdateProps) => {
             </span>
           </Button>
           &nbsp;
-          <Button color="primary" type="submit" disabled={isInvalid || updating}>
+          <Button color="primary" type="submit" disabled={isInvalid || updating} data-e2e-element="save">
             <FontAwesomeIcon icon="save" />&nbsp;
             <Translate contentKey="entity.action.save">Save</Translate>
           </Button>

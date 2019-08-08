@@ -61,13 +61,15 @@ const databaseItem = (
 <%_ } _%>
 
 export const AdminMenu = ({ showSwagger <% if (devDatabaseType === 'h2Disk' || devDatabaseType === 'h2Memory') { %>, showDatabase <%_ } _%>}) => (
-  <NavDropdown icon="user-plus" name={translate('global.menu.admin.main')} style={{ width: '140%' }} id="admin-menu">
+  <div data-e2e-element="admin-menu">
+    <NavDropdown icon="user-plus" name={translate('global.menu.admin.main')} style={{ width: '140%' }} id="admin-menu">
       {adminMenuItems}
       {showSwagger && swaggerItem}
       <% if (devDatabaseType === 'h2Disk' || devDatabaseType === 'h2Memory') { %>
       {showDatabase && databaseItem}
       <%_ } _%>
-  </NavDropdown>
+    </NavDropdown>
+  </div>
 );
 
 export default AdminMenu;
