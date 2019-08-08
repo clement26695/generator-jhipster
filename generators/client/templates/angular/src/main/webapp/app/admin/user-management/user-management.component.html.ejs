@@ -48,11 +48,11 @@
             <tr *ngFor="let user of users; trackBy: trackIdentity" id='{{user.login}}'>
                 <td><a [routerLink]="['./', user.login, 'view']">{{user.id}}</a></td>
                 <td>{{user.login}}</td>
-                <td class='jhi-user-email'>{{user.email}}</td>
+                <td data-e2e-element="email">{{user.email}}</td>
                 <td>
-                    <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated"
+                    <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated" data-e2e-element="activate-button"
                             jhiTranslate="userManagement.deactivated">Deactivated</button>
-                    <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated"
+                    <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated" data-e2e-element="deactivate-button"
                             [disabled]="currentAccount.login === user.login" jhiTranslate="userManagement.activated">Activated</button>
                 </td>
                 <% if (enableTranslation) { %><td>{{user.langKey}}</td><% } %>
@@ -70,19 +70,21 @@
                     <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['./', user.login, 'view']"
-                                class="btn btn-info btn-sm">
+                                class="btn btn-info btn-sm"
+                                data-e2e-element="detail-button">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['./', user.login, 'edit']"
                                 queryParamsHandling="merge"
-                                class="btn btn-primary btn-sm">
+                                class="btn btn-primary btn-sm"
+                                data-e2e-element="edit-button">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="button" (click)="deleteUser(user)"
-                                class="btn btn-danger btn-sm" [disabled]="currentAccount.login === user.login">
+                                class="btn btn-danger btn-sm" [disabled]="currentAccount.login === user.login" data-e2e-element="delete-button">
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
