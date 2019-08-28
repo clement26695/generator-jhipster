@@ -1,3 +1,4 @@
+
 <%#
  Copyright 2013-2019 the original author or authors from the JHipster project.
 
@@ -19,25 +20,25 @@
 <div data-e2e-container="register-page">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h1 jhiTranslate="register.title">Registration</h1>
+            <h1 jhiTranslate="register.title" data-e2e-element="title">Registration</h1>
 
-            <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
+            <div role="alert" class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
                 <strong>Registration saved!</strong> Please check your email for confirmation.
             </div>
 
-            <div class="alert alert-danger" *ngIf="error" jhiTranslate="register.messages.error.fail">
+            <div role="alert" class="alert alert-danger" *ngIf="error" jhiTranslate="register.messages.error.fail">
                 <strong>Registration failed!</strong> Please try again later.
             </div>
 
-            <div class="alert alert-danger" *ngIf="errorUserExists" jhiTranslate="register.messages.error.userexists">
+            <div role="alert" class="alert alert-danger" *ngIf="errorUserExists" jhiTranslate="register.messages.error.userexists">
                 <strong>Login name already registered!</strong> Please choose another one.
             </div>
 
-            <div class="alert alert-danger" *ngIf="errorEmailExists" jhiTranslate="register.messages.error.emailexists">
+            <div role="alert" class="alert alert-danger" *ngIf="errorEmailExists" jhiTranslate="register.messages.error.emailexists">
                 <strong>Email is already in use!</strong> Please choose another one.
             </div>
 
-            <div class="alert alert-danger" *ngIf="doNotMatch" jhiTranslate="global.messages.error.dontmatch">
+            <div role="alert" class="alert alert-danger" *ngIf="doNotMatch" jhiTranslate="global.messages.error.dontmatch">
                 The password and its confirmation do not match!
             </div>
         </div>

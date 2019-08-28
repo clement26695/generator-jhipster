@@ -24,7 +24,7 @@
 <div class="modal-body" data-e2e-container="login-modal">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="alert alert-danger" *ngIf="authenticationError" jhiTranslate="login.messages.error.authentication" data-e2e-element="alert-authentication-error">
+            <div role="alert" class="alert alert-danger" *ngIf="authenticationError" jhiTranslate="login.messages.error.authentication" data-e2e-element="alert-authentication-error">
                 <strong>Failed to sign in!</strong> Please check your credentials and try again.
             </div>
         </div>
