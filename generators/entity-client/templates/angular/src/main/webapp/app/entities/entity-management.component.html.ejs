@@ -16,10 +16,14 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -%>
-<div>
-    <h2 id="page-heading">
+<div data-e2e-container="<%=entityInstance %>-page">
+    <h2 id="page-heading" data-e2e-element="<%=entityInstance %>-heading">
         <span jhiTranslate="<%= i18nKeyPrefix %>.home.title"><%= entityClassPluralHumanized %></span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-<%= entityUrl %>" [routerLink]="['/<%= entityUrl %>/new']">
+        <button
+                id="jh-create-entity"
+                class="btn btn-primary float-right jh-create-entity create-<%= entityUrl %>"
+                [routerLink]="['/<%= entityUrl %>/new']"
+                data-e2e-element="create-entity">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span <% if (searchEngine === 'elasticsearch') { %>class="hidden-sm-down" <% } %> jhiTranslate="<%= i18nKeyPrefix %>.home.createLabel">
             Create a new <%= entityClassHumanized %>
@@ -146,13 +150,15 @@
                     <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/<%= entityUrl %>', <%= entityInstance %>.id, 'view' ]"
-                                class="btn btn-info btn-sm">
+                                class="btn btn-info btn-sm"
+                                data-e2e-element="details-button">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/<%= entityUrl %>', <%= entityInstance %>.id, 'edit']"
-                                class="btn btn-primary btn-sm">
+                                class="btn btn-primary btn-sm"
+                                data-e2e-element="edit-button">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
@@ -160,7 +166,8 @@
                                 [routerLink]="['/<%= entityUrl %>', { outlets: { popup: <%= entityInstance %>.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
+                                class="btn btn-danger btn-sm"
+                                data-e2e-element="delete-button">
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>

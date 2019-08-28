@@ -16,13 +16,13 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -%>
-<form name="deleteForm" (ngSubmit)="confirmDelete(<%= entityInstance %>.id)">
+<form name="deleteForm" (ngSubmit)="confirmDelete(<%= entityInstance %>.id)" data-e2e-container="<%= entityFileName %>-delete">
     <div class="modal-header">
         <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" data-e2e-element="body">
         <<%= jhiPrefixDashed %>-alert-error></<%= jhiPrefixDashed %>-alert-error>
         <p id="<%= jhiPrefixDashed %>-delete-<%= entityInstance %>-heading" jhiTranslate="<%= i18nKeyPrefix %>.delete.question" [translateValues]="{id: <%= entityInstance %>.id}">Are you sure you want to delete this <%= entityClassHumanized %>?</p>
     </div>
@@ -30,7 +30,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
-        <button id="<%= jhiPrefixDashed %>-confirm-delete-<%= entityInstance %>" type="submit" class="btn btn-danger">
+        <button id="<%= jhiPrefixDashed %>-confirm-delete-<%= entityInstance %>" type="submit" class="btn btn-danger" data-e2e-element="confirm">
             <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
         </button>
     </div>

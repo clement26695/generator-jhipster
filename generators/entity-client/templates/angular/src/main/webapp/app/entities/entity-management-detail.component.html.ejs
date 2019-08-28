@@ -16,10 +16,10 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -%>
-<div class="row justify-content-center">
+<div class="row justify-content-center" data-e2e-container="<%= entityFileName %>-details-page">
     <div class="col-8">
         <div *ngIf="<%= entityInstance %>">
-            <h2><span jhiTranslate="<%= i18nKeyPrefix %>.detail.title"><%= entityClassHumanized %></span> {{<%= entityInstance %>.id}}</h2>
+            <h2 data-e2e-element="title"><span jhiTranslate="<%= i18nKeyPrefix %>.detail.title"><%= entityClassHumanized %></span> {{<%= entityInstance %>.id}}</h2>
             <hr>
             <<%= jhiPrefixDashed %>-alert-error></<%= jhiPrefixDashed %>-alert-error>
             <dl class="row-md jh-entity-details">
@@ -100,7 +100,8 @@
 
             <button type="submit"
                     (click)="previousState()"
-                    class="btn btn-info">
+                    class="btn btn-info"
+                    data-e2e-element="back">
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
             </button>
 
