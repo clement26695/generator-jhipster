@@ -30,21 +30,21 @@
                 <dt><span jhiTranslate="<%= i18nKeyPrefix %>.<%= fieldName %>"<% if (fields[idx].javadoc) { if (enableTranslation) { %> [ngbTooltip]="'<%= i18nKeyPrefix %>.help.<%= fieldName %>' | translate"<% } else { %> ngbTooltip="<%= fields[idx].javadoc %>"<% } } %>><%= fields[idx].fieldNameHumanized %></span></dt>
                 <dd>
                     <%_ if (fields[idx].fieldIsEnum) { _%>
-                    <span jhiTranslate="{{'<%= angularAppName %>.<%= fieldType %>.' + <%= entityInstance %>.<%= fieldName %>}}">{{<%= entityInstance %>.<%= fieldName %>}}</span>
+                    <span jhiTranslate="{{'<%= angularAppName %>.<%= fieldType %>.' + <%= entityInstance %>.<%= fieldName %>}}" data-e2e-element="details-item">{{<%= entityInstance %>.<%= fieldName %>}}</span>
                     <%_ } else if (['byte[]', 'ByteBuffer'].includes(fieldType) && fieldTypeBlobContent === 'image') { _%>
-                    <div *ngIf="<%= entityInstance %>.<%= fieldName %>">
+                    <div *ngIf="<%= entityInstance %>.<%= fieldName %>" data-e2e-element="details-item">
                         <a (click)="openFile(<%= entityInstance %>.<%= fieldName %>ContentType, <%= entityInstance %>.<%= fieldName %>)">
                             <img [src]="'data:' + <%=entityInstance %>.<%= fieldName %>ContentType + ';base64,' + <%= entityInstance %>.<%= fieldName %>" style="max-width: 100%;" alt="<%=entityInstance %> image"/>
                         </a>
                         {{<%= entityInstance %>.<%= fieldName %>ContentType}}, {{byteSize(<%= entityInstance %>.<%= fieldName %>)}}
                     </div>
                     <%_ } else if (['byte[]', 'ByteBuffer'].includes(fieldType) && fieldTypeBlobContent === 'any') { _%>
-                    <div *ngIf="<%= entityInstance %>.<%= fieldName %>">
+                    <div *ngIf="<%= entityInstance %>.<%= fieldName %>" data-e2e-element="details-item">
                         <a (click)="openFile(<%= entityInstance %>.<%= fieldName %>ContentType, <%= entityInstance %>.<%= fieldName %>)" jhiTranslate="entity.action.open">open</a>
                         {{<%= entityInstance %>.<%= fieldName %>ContentType}}, {{byteSize(<%= entityInstance %>.<%= fieldName %>)}}
                     </div>
                     <%_ } else { _%>
-                    <span>{{<%= entityInstance %>.<%= fieldName %>}}</span>
+                    <span data-e2e-element="details-item">{{<%= entityInstance %>.<%= fieldName %>}}</span>
                     <%_ } _%>
                 </dd>
                 <%_ } _%>
