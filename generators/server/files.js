@@ -72,11 +72,6 @@ const serverFiles = {
             templates: ['mongodb-cluster.yml', 'mongodb/MongoDB.Dockerfile', 'mongodb/scripts/init_replicaset.js']
         },
         {
-            condition: generator => generator.prodDatabaseType === 'mongodb',
-            path: DOCKER_DIR,
-            templates: ['mongodb-cluster.yml', 'mongodb/MongoDB.Dockerfile', 'mongodb/scripts/init_replicaset.js']
-        },
-        {
             condition: generator => generator.prodDatabaseType === 'couchbase',
             path: DOCKER_DIR,
             templates: ['couchbase-cluster.yml', 'couchbase/Couchbase.Dockerfile', 'couchbase/scripts/configure-node.sh']
@@ -694,7 +689,8 @@ const serverFiles = {
             ]
         },
         {
-            condition: generator => generator.authenticationType === 'oauth2' && generator.applicationType === 'gateway',
+            condition: generator =>
+                generator.authenticationType === 'oauth2' && generator.applicationType === 'gateway' && generator.serviceDiscoveryType,
             path: SERVER_MAIN_SRC_DIR,
             templates: [
                 {
@@ -770,6 +766,15 @@ const serverFiles = {
             condition: generator => !generator.reactive,
             path: SERVER_MAIN_SRC_DIR,
             templates: [{ file: 'package/ApplicationWebXml.java', renameTo: generator => `${generator.javaDir}ApplicationWebXml.java` }]
+        },
+        {
+            path: SERVER_TEST_SRC_DIR,
+            templates: [
+                {
+                    file: 'package/ArchTest.java',
+                    renameTo: generator => `${generator.testDir}ArchTest.java`
+                }
+            ]
         }
     ],
     serverJavaConfig: [
@@ -1013,6 +1018,26 @@ const serverFiles = {
             path: SERVER_MAIN_SRC_DIR,
             templates: [
                 { file: 'package/repository/package-info.java', renameTo: generator => `${generator.javaDir}repository/package-info.java` }
+            ]
+        }
+    ],
+    serverJavaServiceError: [
+        {
+            condition: generator => !generator.skipUserManagement,
+            path: SERVER_MAIN_SRC_DIR,
+            templates: [
+                {
+                    file: 'package/service/EmailAlreadyUsedException.java',
+                    renameTo: generator => `${generator.javaDir}service/EmailAlreadyUsedException.java`
+                },
+                {
+                    file: 'package/service/InvalidPasswordException.java',
+                    renameTo: generator => `${generator.javaDir}service/InvalidPasswordException.java`
+                },
+                {
+                    file: 'package/service/UsernameAlreadyUsedException.java',
+                    renameTo: generator => `${generator.javaDir}service/UsernameAlreadyUsedException.java`
+                }
             ]
         }
     ],
