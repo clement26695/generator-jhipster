@@ -237,10 +237,10 @@ export class <%= entityReactName %>Update extends React.Component<I<%= entityRea
     <%_ } _%>
 
     return (
-      <div>
+      <div data-e2e-container="<%= entityFileName %>-edit-page">
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="<%= i18nKeyPrefix %>.home.createOrEditLabel">
+          <h2 id="<%= i18nKeyPrefix %>.home.createOrEditLabel" data-e2e-element="title">
             <Translate contentKey="<%= i18nKeyPrefix %>.home.createOrEditLabel">Create or edit a <%= entityClass %></Translate>
           </h2>
         </Col>
@@ -264,7 +264,7 @@ export class <%= entityReactName %>Update extends React.Component<I<%= entityRea
             <AvGroup>
             <%_ if (fieldType === 'Boolean') { _%>
               <Label id="<%= fieldName %>Label" check>
-                <AvInput id="<%= entityFileName %>-<%= fieldName %>" type="checkbox" className="form-control" name="<%= fieldName %>" />
+                <AvInput id="<%= entityFileName %>-<%= fieldName %>" type="checkbox" className="form-control" name="<%= fieldName %>" data-e2e-element="<%= entityFileName %>-<%= fieldName %>"/>
                 <Translate contentKey="<%= i18nKeyPrefix %>.<%= fieldName %>">
                   <%= fieldNameHumanized %>
                 </Translate>
@@ -283,6 +283,7 @@ export class <%= entityReactName %>Update extends React.Component<I<%= entityRea
                 placeholder={"YYYY-MM-DD HH:mm"}
                 value={isNew ? null : convertDateTimeFromServer(this.props.<%= entityInstance %>Entity.<%= fieldName %>)}
                 <%- include react_validators %>
+                data-e2e-element="<%= entityFileName %>-<%= fieldName %>"
               />
             <%_ } else if (fieldType === 'LocalDate') { _%>
               <Label id="<%= fieldName %>Label" for="<%= entityFileName %>-<%= fieldName %>">
@@ -296,6 +297,7 @@ export class <%= entityReactName %>Update extends React.Component<I<%= entityRea
                 className="form-control"
                 name="<%= fieldName %>"
                 <%- include react_validators %>
+                data-e2e-element="<%= entityFileName %>-<%= fieldName %>"
               />
             <%_
               } else if (fields[idx].fieldIsEnum) {
@@ -312,6 +314,7 @@ export class <%= entityReactName %>Update extends React.Component<I<%= entityRea
                 className="form-control"
                 name="<%= fieldName %>"
                 value={(!isNew && <%= entityInstance %>Entity.<%= fieldName%>) || '<%= values[0] %>'}
+                data-e2e-element="<%= entityFileName %>-<%= fieldName %>"
               >
               <%_
                 const enumPrefix = angularAppName + '.'+ fieldType;
@@ -333,7 +336,14 @@ export class <%= entityReactName %>Update extends React.Component<I<%= entityRea
                   <%= fieldNameHumanized %>
                 </Translate>
               </Label>
-              <AvField id="<%= entityFileName %>-<%= fieldName %>" type="string" className="form-control" name="<%= fieldName %>" <%- include react_validators %> />
+              <AvField
+                id="<%= entityFileName %>-<%= fieldName %>"
+                type="string"
+                className="form-control"
+                name="<%= fieldName %>"
+                <%- include react_validators %>
+                data-e2e-element="<%= entityFileName %>-<%= fieldName %>"
+              />
             <%_
             } else if (['byte[]', 'ByteBuffer'].includes(fieldType)) {
 
@@ -372,7 +382,7 @@ export class <%= entityReactName %>Update extends React.Component<I<%= entityRea
                 </div>
               ) : null}
               <input id="file_<%= fieldName %>" type="file" onChange={this.onBlobChange(<%= isAnImage %>, '<%= fieldName %>')} <% if (isAnImage) { %>accept="image/*"<% } %> />
-              <AvInput type="hidden" name="<%= fieldName %>" value={<%= fieldName %>} <%- include react_validators %>/>
+              <AvInput type="hidden" name="<%= fieldName %>" value={<%= fieldName %>} <%- include react_validators %> data-e2e-element="<%= entityFileName %>-<%= fieldName %>"/>
             </AvGroup>
 
             <%_ } else { _%>
@@ -381,7 +391,7 @@ export class <%= entityReactName %>Update extends React.Component<I<%= entityRea
                   <%= fieldNameHumanized %>
                 </Translate>
               </Label>
-              <AvInput id="<%= entityFileName %>-<%= fieldName %>" type="textarea" name="<%= fieldName %>" <%- include react_validators %>/>
+              <AvInput id="<%= entityFileName %>-<%= fieldName %>" type="textarea" name="<%= fieldName %>" <%- include react_validators %> data-e2e-element="<%= entityFileName %>-<%= fieldName %>"/>
               <%_ } _%>
             <%_ } else { _%>
             <Label id="<%= fieldName %>Label" for="<%= entityFileName %>-<%= fieldName %>">
@@ -389,7 +399,7 @@ export class <%= entityReactName %>Update extends React.Component<I<%= entityRea
                 <%= fieldNameHumanized %>
               </Translate>
             </Label>
-            <AvField id="<%= entityFileName %>-<%= fieldName %>" type="text" name="<%= fieldName %>" <%- include react_validators %>/>
+            <AvField id="<%= entityFileName %>-<%= fieldName %>" type="text" name="<%= fieldName %>" <%- include react_validators %> data-e2e-element="<%= entityFileName %>-<%= fieldName %>"/>
           <%_ } _%>
             <%_ if (fields[idx].javadoc) { _%>
             <UncontrolledTooltip target="<%= fieldName %>Label">
@@ -575,7 +585,7 @@ export class <%= entityReactName %>Update extends React.Component<I<%= entityRea
               <span className="d-none d-md-inline" ><Translate contentKey="entity.action.back">Back</Translate></span>
             </Button>
             &nbsp;
-            <Button color="primary" id="save-entity" type="submit" disabled={updating}>
+            <Button color="primary" id="save-entity" type="submit" disabled={updating} data-e2e-element="save">
               <FontAwesomeIcon icon="save" />&nbsp;
               <Translate contentKey="entity.action.save">Save</Translate>
             </Button>
