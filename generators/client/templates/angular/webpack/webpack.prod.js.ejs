@@ -36,7 +36,7 @@ const sass = require('sass');
 module.exports = webpackMerge(commonConfig({ env: ENV }), {
     // Enable source maps. Please note that this will slow down the build.
     // You have to enable it in Terser config below and in tsconfig-aot.json as well
-    // devtool: 'source-map',
+    devtool: 'eval-source-map',
     entry: {
         polyfills: './<%= MAIN_SRC_DIR %>app/polyfills',
         global: './<%= MAIN_SRC_DIR %>content/scss/global.scss',
