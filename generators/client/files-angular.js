@@ -50,7 +50,7 @@ const files = {
         },
         {
             condition: generator => !generator.skipCommitHook,
-            templates: ['.huskyrc']
+            templates: ['.huskyrc', '.lintstagedrc.js']
         }
     ],
     sass: [
@@ -282,6 +282,7 @@ const files = {
             path: ANGULAR_DIR,
             templates: [
                 { file: 'admin/user-management/user-management.route.ts', method: 'processJs' },
+                { file: 'admin/user-management/user-management.module.ts', method: 'processJs' },
                 { file: 'admin/user-management/user-management.component.ts', method: 'processJs' },
                 { file: 'admin/user-management/user-management.component.html', method: 'processHtml' },
                 { file: 'admin/user-management/user-management-detail.component.ts', method: 'processJs' },
@@ -311,7 +312,10 @@ const files = {
                 'core/core.module.ts',
                 // login
                 'core/login/login.service.ts',
-                'core/user/account.model.ts'
+                'core/user/account.model.ts',
+
+                // icons
+                'core/icons/font-awesome-icons.ts'
             ]
         },
         {
@@ -339,7 +343,6 @@ const files = {
             templates: [
                 'shared/shared.module.ts',
                 'shared/shared-libs.module.ts',
-                'shared/shared-common.module.ts',
                 'shared/constants/error.constants.ts',
                 'shared/constants/input.constants.ts',
                 'shared/constants/pagination.constants.ts',

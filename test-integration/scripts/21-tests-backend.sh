@@ -19,7 +19,7 @@ fi
 if [ -f "mvnw" ]; then
     ./mvnw -ntp javadoc:javadoc
 elif [ -f "gradlew" ]; then
-    ./gradlew javadoc
+    ./gradlew javadoc -x webpack
 fi
 
 #-------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ fi
 #-------------------------------------------------------------------------------
 cd "$JHI_FOLDER_APP"
 if [ -f "mvnw" ]; then
-    ./mvnw -ntp verify \
+    ./mvnw -ntp -P-webpack verify \
         -Dlogging.level.ROOT=OFF \
         -Dlogging.level.org.zalando=OFF \
         -Dlogging.level.io.github.jhipster=OFF \
@@ -46,7 +46,7 @@ if [ -f "mvnw" ]; then
         -Dlogging.level.org.springframework.security=OFF
 
 elif [ -f "gradlew" ]; then
-    ./gradlew test integrationTest \
+    ./gradlew test integrationTest -x webpack \
         -Dlogging.level.ROOT=OFF \
         -Dlogging.level.org.zalando=OFF \
         -Dlogging.level.io.github.jhipster=OFF \

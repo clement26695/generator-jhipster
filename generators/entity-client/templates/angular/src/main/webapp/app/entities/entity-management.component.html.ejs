@@ -16,8 +16,8 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -%>
-<div data-e2e-container="<%=entityInstance %>-page">
-    <h2 id="page-heading" data-e2e-element="<%=entityInstance %>-heading">
+<div data-e2e-container="<%= entityFileName %>-page">
+    <h2 id="page-heading" data-e2e-element="<%= entityFileName %>-heading">
         <span jhiTranslate="<%= i18nKeyPrefix %>.home.title"><%= entityClassPluralHumanized %></span>
         <button
                 id="jh-create-entity"
@@ -191,7 +191,7 @@
     <%_ } else if (pagination === 'pagination') { _%>
     <div [hidden]="<%=entityInstancePlural %>?.length === 0">
         <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
             <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
